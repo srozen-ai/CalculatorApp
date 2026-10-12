@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/srozen-ai/CalculatorApp/internal/calc"
+	"github.com/srozen-ai/CalculatorApp/backend/internal/calc"
 )
 
 // errorMapping ties a domain error to the status and code returned for it.

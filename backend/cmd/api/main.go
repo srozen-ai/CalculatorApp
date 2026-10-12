@@ -7,8 +7,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/srozen-ai/CalculatorApp/internal/handlers"
-	"github.com/srozen-ai/CalculatorApp/internal/httpx"
+	"github.com/srozen-ai/CalculatorApp/backend/internal/handlers"
+	"github.com/srozen-ai/CalculatorApp/backend/internal/httpx"
 )
 
 func main() {

@@ -1,0 +1,144 @@
+:root {
+  --bg: #16181d;
+  --surface: #1f2228;
+  --key: #2a2e36;
+  --key-op: #3a4250;
+  --key-equals: #4c7dff;
+  --text: #f2f4f8;
+  --muted: #8b94a3;
+  --danger: #ff6b6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.app__title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0 0 1rem;
+}
+
+.calculator {
+  width: 100%;
+  max-width: 360px;
+  background: var(--surface);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.display {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  min-height: 5.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.display__expression {
+  font-size: 0.95rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.display__value {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  transition: font-size 0.1s ease-out;
+}
+
+.display__pending {
+  color: var(--muted);
+  font-size: 1.25rem;
+}
+
+.error {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(255, 107, 107, 0.12);
+  border-radius: 0.5rem;
+  color: var(--danger);
+  font-size: 0.875rem;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.keypad button {
+  min-height: 56px;
+  border: none;
+  border-radius: 0.6rem;
+  background: var(--key);
+  color: var(--text);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+.keypad button:hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+
+.keypad button:focus-visible {
+  outline: 2px solid var(--key-equals);
+  outline-offset: 2px;
+}
+
+.keypad button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.key--operation {
+  background: var(--key-op);
+}
+
+.key--util {
+  background: var(--key-op);
+  font-size: 1.1rem;
+}
+
+.key--equals {
+  grid-column: span 3;
+  background: var(--key-equals);
+  font-weight: 600;
+}
+
+@media (max-width: 380px) {
+  .keypad button {
+    min-height: 48px;
+    font-size: 1.1rem;
+  }
+}

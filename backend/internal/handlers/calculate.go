@@ -5,7 +5,7 @@ package handlers
 import (
 	"errors"
 
-	"github.com/srozen-ai/CalculatorApp/internal/calc"
+	"github.com/srozen-ai/CalculatorApp/backend/internal/calc"
 )
 
 // ErrUnknownOperation is returned when the operation is not supported.
