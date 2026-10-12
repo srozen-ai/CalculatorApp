@@ -243,12 +243,21 @@ Responsive behaviour was verified **manually** at 375px in browser devtools and
 on a physical phone over the local network. It is not covered by automated tests
 — jsdom does not lay out a viewport.
 
+### Continuous integration
+
+A GitHub Actions workflow runs on every push and pull request. The backend job
+checks `gofmt` formatting, runs `go vet`, and runs the test suite with coverage;
+the frontend job runs ESLint, the TypeScript build, and the Vitest suite. A
+failing format check fails the build, so the formatting claims above are
+enforced rather than asserted.
+
 ---
 
 ## Project structure
 
 ```
 CalculatorApp/
+├── .github/workflows/ci.yml     format, vet, lint, build and tests on both layers
 ├── backend/
 │   ├── cmd/api/
 │   │   └── main.go                  wiring, timeouts, startup
