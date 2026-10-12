@@ -128,4 +128,34 @@ describe("App", () => {
       "Could not reach the server",
     );
   });
+
+  it("toggles the sign of the current operand", async () => {
+    const fetchMock = mockFetch(200, { result: -2 });
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.keyboard("5");
+    await user.click(screen.getByRole("button", { name: "toggle sign" }));
+    expect(display()).toHaveTextContent("-5");
+
+    await user.keyboard("+3{Enter}");
+
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body as string)).toEqual({
+      operation: "add",
+      a: -5,
+      b: 3,
+    });
+  });
+
+  it("accepts one decimal point and deletes with backspace", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    // The second decimal point is ignored, so "1.2.3" can never be formed.
+    await user.keyboard("1.2.3");
+    expect(display()).toHaveTextContent("1.23");
+
+    await user.keyboard("{Backspace}");
+    expect(display()).toHaveTextContent("1.2");
+  });
 });

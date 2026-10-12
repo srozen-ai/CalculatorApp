@@ -6,7 +6,7 @@ services:
     environment:
       ADDR: ":8080"
       # Must match the origin the browser loads the frontend from.
-      ALLOWED_ORIGIN: "http://localhost:5173"
+      ALLOWED_ORIGIN: "${ALLOWED_ORIGIN:-http://localhost:5173}"
 
   frontend:
     build:
@@ -14,7 +14,7 @@ services:
       args:
         # The URL the browser reaches, not the compose service name: the
         # request is made by the browser, which is outside the compose network.
-        VITE_API_URL: "http://localhost:8080"
+        VITE_API_URL: "${API_URL:-http://localhost:8080}"
     ports:
       - "5173:80"
     depends_on:
